@@ -16,7 +16,7 @@ La empresa comercializadora Eagle Wear busca obtener un mayor alcance en el merc
 
 
 ## Visualización 🔗
-[Proyecto Eagle Wear](https://fantastic-starlight-ba744e.netlify.app)
+[Proyecto Eagle Wear](https://eaglewear-adriana-rosas.netlify.app)
 
 
 ---
