@@ -110,8 +110,6 @@ export default {
 .elements-cont {
   width: 95vw;
 }
-<<<<<<< HEAD
-=======
 .switch {
   display: flex;
   align-items: center;
@@ -119,7 +117,6 @@ export default {
 .btn-logout {
   margin: 0;
 }
->>>>>>> 3b7c703 (:art:last details)
 .v-application--is-ltr .v-messages {
   display: none !important;
 }
@@ -128,8 +125,6 @@ export default {
   margin-right: 0px !important;
   padding: 0px !important;
 }
-<<<<<<< HEAD
-=======
 .img-logo-nav {
   width: 180px;
 }
@@ -144,5 +139,4 @@ export default {
     margin-right: 2rem;
   }
 }
->>>>>>> 3b7c703 (:art:last details)
 </style>
