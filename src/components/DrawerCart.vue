@@ -1,7 +1,13 @@
 <template>
   <div class="d-flex flex-column cont-product">
-    <v-btn color="#B20000" icon @click.stop="drawerCart = !drawerCart">
-      <v-icon>mdi-cart</v-icon>
+    <v-btn
+      style="overflow: hidden"
+      color="#B20000"
+      icon
+      small
+      @click.stop="drawerCart = !drawerCart"
+    >
+      <v-icon small>mdi-cart</v-icon>
     </v-btn>
     <v-navigation-drawer
       right
@@ -59,9 +65,7 @@
                 <div
                   class="img-item d-flex align-center justify-center"
                   :style="`background-image: url(${carts[0].image})`"
-                >
-                  <!-- <v-img :src="carts[0].image" alt="item-cart" /> -->
-                </div>
+                ></div>
                 <div class="d-flex flex-column justify-center">
                   <p class="title-item">{{ carts[0].title }}</p>
                   <div class="d-flex justify-end mt-3" style="width: 100%">
@@ -125,9 +129,7 @@ export default {
       );
     },
   },
-  // logOut() {
-  //   this.$store.dispatch("logOut");
-  // },
+
 };
 </script>
 
@@ -137,7 +139,9 @@ export default {
   height: 100vh;
   display: flex !important;
   flex-direction: column !important;
-  /* background: orange; */
+}
+.draw-cart {
+  width: 50vw !important;
 }
 .alert {
   width: 100%;
@@ -158,7 +162,6 @@ export default {
   margin-top: 1rem;
 }
 .alert-ok {
-  border: 2px solid #c00000 !important;
   color: #c00000 !important;
   text-transform: capitalize;
   margin-top: 1rem;
@@ -173,7 +176,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 2px solid gold !important; */
 }
 .logo-cart {
   width: 100%;
@@ -181,7 +183,6 @@ export default {
   background-image: url("../assets/logo-eagle.png");
   background-size: 60px;
   background-position: center;
-  /* border: 2px solid rgb(96, 83, 7) !important; */
 }
 h5 {
   font-size: 1.8rem;
@@ -216,9 +217,6 @@ h5 {
   height: 15vh;
   background-size: contain;
   background-position: center;
-  /* margin-right: 1rem; */
-
-  /* border: 2px solid red; */
 }
 .total {
   width: 100%;
@@ -254,8 +252,18 @@ h5 {
   }
   .title-item {
     inline-size: 100px !important;
-    overflow-wrap: break-word !important;
-    width: 80% !important;
+    overflow-wrap: normal !important;
+    width: 100% !important;
+    font-size: 12px;
+  }
+  .price-item {
+    font-size: 14px;
+  }
+  .draw-cart {
+    width: 100vw;
+  }
+  .total {
+    padding: 0rem 1rem 2rem 0 !important;
   }
 }
 </style>

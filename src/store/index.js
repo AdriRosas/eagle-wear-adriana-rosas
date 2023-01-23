@@ -20,7 +20,7 @@ export default new Vuex.Store({
   getters: {
     getproductsToCart: (state) => state.productsToCart,
     getProducts: (state) => state.products,
-    getUser: (state) => state.newUser,
+    getUser: (state) => state.user
   },
   mutations: {
     ADD_TO_CART(state, productsToCartAdd) {
@@ -94,16 +94,6 @@ export default new Vuex.Store({
         console.log(error);
       }
     },
-    // async getItemId( payload) {
-    //   try {
-    //     const { data } = await axios.post("https://fakestoreapi.com/products/", payload);
-    //     // commit("GET_ITEM", data);
-    //     console.log(data, "data f")
-    //   } catch (error) {
-    //     alert(error);
-    //     console.log(error);
-    //   }
-    // },
     async fetchProducts({ commit }) {
       try {
         const data = await axios.get("https://fakestoreapi.com/products");

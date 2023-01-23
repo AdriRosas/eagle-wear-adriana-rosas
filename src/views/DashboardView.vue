@@ -73,39 +73,14 @@
           v-for="product in getProducts"
           :key="product.id"
         >
-          <v-card
-            class="ma-3 card-product d-flex flex-column justify-center"
-            elevation="0"
-          >
-            <v-chip
-              small
-              class="mb-5"
-              label
-              :text-color="getTextColor(product.category)"
-              :color="getColor(product.category)"
-              width="2vw"
-            >
-              <v-icon left small :color="getTextColor(product.category)">
-                mdi-label
-              </v-icon>
-              <p class="caption ma-0 pa-0 font-weight-bold">
-                {{ product.category }}
-              </p>
-            </v-chip>
-            <button @click="handleClick(product), (dialog = true)">
-              <div
-                class="cont-imgs"
-                :style="`background-image: url(${product.image})`"
-              ></div>
-            </button>
-            <v-dialog v-model="dialog" width="1000">
-              <v-card
-                tile
-                class="d-flex flex-column pa-3"
-                v-for="product in cartItem"
-                :key="product.id"
-              >
-                <v-card-title class="d-flex justify-space-between">
+       
+            <v-skeleton-loader class="mx-auto" max-width="250" type="card" :loading="loading">
+              <v-hover v-slot="{ hover }" open-delay="200">
+                <v-card
+                  class="ma-3 card-product d-flex flex-column justify-center"
+                  :elevation="hover ? 16 : 2"
+                  :class="{ 'on-hover': hover }"
+                >
                   <v-chip
                     small
                     class="mb-5"
@@ -121,60 +96,99 @@
                       {{ product.category }}
                     </p>
                   </v-chip>
-                  <v-btn icon @click="dialog = false"
-                    ><v-icon>mdi-close</v-icon></v-btn
-                  >
-                </v-card-title>
-                <div class="card-cont d-flex">
-                  <div
-                    class="cont-imgs-dialog"
-                    :style="`background-image: url(${product.image})`"
-                  ></div>
-                  <div class="description d-flex flex-column">
-                    <v-card-text>
-                      <p class="name-card-dialog">{{ product.title }}</p>
-                      <p class="price font-weight-bold">
-                        ${{ product.price }} USD
-                      </p>
-                      <p class="name-card">{{ product.description }}</p>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-btn
-                        small
-                        tile
-                        elevation="0"
-                        color="#9A0000"
-                        outlined
-                        class="submit add-cart-dialog"
-                        @click="dialog = false"
-                        >Añadir<v-icon x-small style="margin-left: 3px"
-                          >mdi-cart</v-icon
-                        ></v-btn
+                  <button @click="handleClick(product), (dialog = true)">
+                    <div
+                      class="cont-imgs"
+                      :style="`background-image: url(${product.image})`"
+                    ></div>
+                  </button>
+                  <v-dialog v-model="dialog" width="1000">
+                    <v-card
+                      tile
+                      class="d-flex flex-column pa-3"
+                      v-for="product in cartItem"
+                      :key="product.id"
+                      
+                    >
+                      <v-card-title
+                        class="d-flex justify-space-between align-center"
                       >
-                    </v-card-actions>
-                  </div>
-                </div>
-              </v-card>
-            </v-dialog>
+                        <v-chip
+                          small
+                          class="category-card"
+                          label
+                          :text-color="getTextColor(product.category)"
+                          :color="getColor(product.category)"
+                          width="2vw"
+                        >
+                          <v-icon
+                            left
+                            small
+                            :color="getTextColor(product.category)"
+                          >
+                            mdi-label
+                          </v-icon>
+                          <p class="caption ma-0 pa-0 font-weight-bold">
+                            {{ product.category }}
+                          </p>
+                        </v-chip>
+                        <v-btn icon @click="dialog = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </v-card-title>
+                      <div class="card-cont">
+                        <div
+                          class="cont-imgs-dialog"
+                          :style="`background-image: url(${product.image})`"
+                        ></div>
+                        <div class="description d-flex flex-column">
+                          <v-card-text>
+                            <p class="name-card-dialog">{{ product.title }}</p>
+                            <p class="price font-weight-bold">
+                              ${{ product.price }} USD
+                            </p>
+                            <p class="name-card">{{ product.description }}</p>
+                          </v-card-text>
+                          <v-card-actions>
+                            <v-btn
+                              small
+                              tile
+                              elevation="0"
+                              color="#9A0000"
+                              outlined
+                              width="100%"
+                              class="submit add-cart-dialog"
+                              @click="dialog = false"
+                              >Añadir<v-icon x-small style="margin-left: 3px"
+                                >mdi-cart</v-icon
+                              ></v-btn
+                            >
+                          </v-card-actions>
+                        </div>
+                      </div>
+                    </v-card>
+                  </v-dialog>
 
-            <br />
-            <p class="name-card pa-0 ma-0">{{ product.title }}</p>
-            <p class="price font-weight-bold pa-0 ma-0">
-              ${{ product.price }} USD
-            </p>
-            <v-btn
-              small
-              rounded
-              elevation="0"
-              color="#B20000"
-              outlined
-              class="submit add-cart mt-4"
-              @click="handleClick(product)"
-              >Añadir<v-icon x-small style="margin-left: 3px"
-                >mdi-cart</v-icon
-              ></v-btn
-            >
-          </v-card>
+                  <br />
+                  <p class="name-card pa-0 ma-0">{{ product.title }}</p>
+                  <p class="price font-weight-bold pa-0 ma-0">
+                    ${{ product.price }} USD
+                  </p>
+                  <v-btn
+                    small
+                    elevation="0"
+                    color="#B20000"
+                    outlined
+                    class="submit add-cart mt-4"
+                    @click="handleClick(product)"
+                    >Añadir<v-icon x-small style="margin-left: 3px"
+                      >mdi-cart</v-icon
+                    ></v-btn
+                  >
+                </v-card>
+              </v-hover>
+            </v-skeleton-loader>
+       
         </v-col>
       </v-row>
     </div>
@@ -183,9 +197,9 @@
 
 <script>
 import { mapGetters } from "vuex";
-// import DrawerCart from "../components/DrawerCart.vue";
+import loadCard from '../mixins/loadCard';
 export default {
-  // components: { DrawerCart },
+  mixins: [loadCard],
   data: () => ({
     searchValue: "",
     dialog: false,
@@ -193,8 +207,12 @@ export default {
     ascending: true,
     items: ["categoría", "precio"],
     sortBy: ["category", "price"],
+    loading: true,
   }),
   created() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
     this.$store.dispatch("fetchProducts");
   },
   computed: {
