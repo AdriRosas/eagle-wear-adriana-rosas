@@ -59,7 +59,7 @@
             :disabled="!valid"
             @click="validate"
           >
-            Validate
+            Ingresar
           </v-btn>
         </v-form>
       </v-card>
